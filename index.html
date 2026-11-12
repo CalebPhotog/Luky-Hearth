@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Lucky Hearth">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5EDE3">
+<title>Lucky Hearth</title>
+<link rel="apple-touch-icon" href="lucky-hearth-icon.png">
+<link rel="icon" type="image/png" href="lucky-hearth-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  html,body{margin:0;height:100%;background:#F5EDE3;overflow:hidden}
+  iframe{position:fixed;left:0;right:0;top:0;bottom:env(safe-area-inset-bottom);width:100%;height:calc(100% - env(safe-area-inset-bottom));border:0;display:block}
+  .msg{font:600 16px/1.5 -apple-system,system-ui,sans-serif;color:#2F2521;padding:40px 24px;text-align:center}
+</style>
+</head>
+<body>
+<script>
+  /* ▼ Paste your Apps Script web-app link (the one ending in /exec) between the quotes. */
+  const APP_URL = 'PASTE_YOUR_EXEC_LINK_HERE';
+
+  const fromLink = new URLSearchParams(location.search).get('t');
+  let token = fromLink;
+  try { if (fromLink) localStorage.setItem('lh_t', fromLink); else token = localStorage.getItem('lh_t'); } catch (e) {}
+
+  if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(APP_URL)) {
+    document.body.innerHTML = '<p class="msg">Almost there: paste your Apps Script /exec link into APP_URL in index.html.</p>';
+  } else {
+    const f = document.createElement('iframe');
+    f.src = APP_URL + (token ? (APP_URL.indexOf('?') < 0 ? '?' : '&') + 't=' + encodeURIComponent(token) : '');
+    f.allow = 'clipboard-write; web-share; autoplay';
+    f.title = 'Lucky Hearth';
+    document.body.appendChild(f);
+  }
+</script>
+</body>
+</html>
