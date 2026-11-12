@@ -1,0 +1,9 @@
+{
+  "name": "Lucky Hearth",
+  "short_name": "Lucky Hearth",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F5EDE3",
+  "theme_color": "#F5EDE3",
+  "icons": [{ "src": "lucky-hearth-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }]
+}
